@@ -10,7 +10,6 @@ import java.util.Optional;
 import entity.Book;
 import entity.Cd;
 import entity.Cosmetics;
-import entity.Customer;
 import entity.Product;
 
 public class ProductDaoImpl implements ProductDao {
