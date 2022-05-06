@@ -29,7 +29,6 @@ public class ProductServiceImpl implements ProductService {
 				if(!(dao.updateProductInventory(category, typeOfCategory,newQuantity)>0))
 					return false;
 				totalCost=totalCost+cost;
-					
 			}
 			else
 				return false;
