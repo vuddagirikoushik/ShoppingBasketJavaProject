@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public boolean eachTransaction(int category, int typeOfCategory, int requiredQuantity) {
+	public String eachTransaction(int category, int typeOfCategory, int requiredQuantity) {
 		Optional<Product> product=dao.getProduct(category, typeOfCategory);
 		int newQuantity;
 		double cost;
@@ -27,14 +27,19 @@ public class ProductServiceImpl implements ProductService {
 				cost=cost+(product.get().getSalesTax()*cost/100);
 				newQuantity=product.get().getNoOfItems()-requiredQuantity;
 				if(!(dao.updateProductInventory(category, typeOfCategory,newQuantity)>0))
-					return false;
+					return null;
+//				builder.append("Product name:"+product.get().getProductName()+"No of items:"+requiredQuantity+"Price: "+cost+"\n");
 				totalCost=totalCost+cost;
+				return "Product name:"+product.get().getProductName()+" No of items:"+requiredQuantity+" Price: "+cost+"\n";
 			}
 			else
-				return false;
+				System.out.println("Insufficient stock");
+				return null;
 		}
 		
-		return false;
+		return null;
 	}
 
+
+	
 }

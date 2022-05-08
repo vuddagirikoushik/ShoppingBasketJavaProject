@@ -21,8 +21,10 @@ public class test {
 		 * System.out.println("not there");
 		 */
 		ProductService productService=new ProductServiceImpl();
-		productService.eachTransaction(3,1,5);
-		System.out.println(productService.getTotalCost());
+		productService.eachTransaction(2,1,5);
+		System.out.println( productService.getTotalCost());
+		productService.eachTransaction(1, 1, 3);
+		
 	}
 
 }

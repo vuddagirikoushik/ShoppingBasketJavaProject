@@ -18,11 +18,12 @@ public class DaoImpl implements Dao {
 		try(Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/wiley233","root","wiley")){
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			preparedStatement=connection.prepareStatement("insert into customer values(?,?,?,?)");
+			preparedStatement=connection.prepareStatement("insert into customer values(?,?,?,?,?)");
 			preparedStatement.setInt(1,customer.getCustomerId());
 			preparedStatement.setString(2,customer.getCustomerName());
 			preparedStatement.setString(3,customer.getAddress());
 			preparedStatement.setString(4,customer.getCustomerNumber());
+			preparedStatement.setString(5,customer.getPassword());
 			int rows=preparedStatement.executeUpdate();
 			return rows;
 
@@ -51,7 +52,8 @@ public class DaoImpl implements Dao {
 				String name=result.getString(2);
 				String address=result.getString(3);
 				String number=result.getString(4);
-				customer=new Customer(id, name, address, number);
+				String pass=result.getString(5);
+				customer=new Customer(id, name, address, number,pass);
 			}
 
 		} catch (SQLException e) {
